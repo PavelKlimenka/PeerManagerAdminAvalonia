@@ -49,8 +49,6 @@ namespace Client
 
         private async void ChangeRolesBtn_Click(object? sender, RoutedEventArgs e)
         {
-            await RefreshRoleUserProfileItems();
-            e.Handled = true;
         }
     }
 }

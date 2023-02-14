@@ -7,13 +7,7 @@
         Title="Client">
 
   <Window.Styles>
-    <Style Selector="DataGridCell">
-      <Setter Property="FontSize" Value="10"></Setter>
-    </Style>
-    <Style Selector="DataGrid">
-      <Setter Property="BorderBrush" Value="Gray"></Setter>
-      <Setter Property="BorderThickness" Value="1"></Setter>
-    </Style>
+    <StyleInclude Source="/Styles/MainWindowStyles.axaml"></StyleInclude>
   </Window.Styles>
 
   <Grid RowDefinitions="Auto, *">

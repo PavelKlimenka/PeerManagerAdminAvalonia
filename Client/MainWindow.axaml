@@ -1,0 +1,66 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Client.MainWindow"
+        Title="Client">
+
+  <Window.Styles>
+    <Style Selector="DataGridCell">
+      <Setter Property="FontSize" Value="10"></Setter>
+    </Style>
+    <Style Selector="DataGrid">
+      <Setter Property="BorderBrush" Value="Gray"></Setter>
+      <Setter Property="BorderThickness" Value="1"></Setter>
+    </Style>
+  </Window.Styles>
+
+  <Grid RowDefinitions="Auto, *">
+     <!-- Header -->
+    <Panel Grid.Row="0" Background="AliceBlue">
+      <Label FontWeight="Black" HorizontalAlignment="Center">PEER MANAGER ADMIN</Label>
+    </Panel>
+
+    <!-- Main Area -->
+    <TabControl Grid.Row="1">
+      <!-- Roles Tab -->
+      <TabItem>
+        <TabItem.Header>
+          <TextBlock FontWeight="Black" FontSize="18">Roles</TextBlock>
+        </TabItem.Header>
+
+        <Grid RowDefinitions="*, Auto">
+          <DataGrid Name="RoleUserProfileGrid" ColumnWidth="*" Items="{Binding RoleUserProfileItems}">
+            <DataGrid.AutoGenerateColumns>True</DataGrid.AutoGenerateColumns>
+            <DataGrid.IsReadOnly>True</DataGrid.IsReadOnly>
+            <DataGrid.CanUserResizeColumns>True</DataGrid.CanUserResizeColumns>
+          </DataGrid>
+
+          <!-- Footer -->
+          <Grid Grid.Row="1" Margin="0, 7" ColumnDefinitions="Auto, * , Auto">
+            <Button Name="RefreshRolesBtn" Grid.Column="0">Refresh</Button>
+            <Button Name="ChangeRolesBtn" Grid.Column="2">Change</Button>
+          </Grid>
+        </Grid>
+      </TabItem>
+
+      <!-- Other Tab -->
+      <TabItem>
+        <TabItem.Header>
+          <TextBlock FontWeight="Black" FontSize="18">Other</TextBlock>
+        </TabItem.Header>
+
+        <Grid RowDefinitions="*, Auto">
+
+          <!-- Footer -->
+          <Grid Grid.Row="1" Margin="0, 7" ColumnDefinitions="Auto, * , Auto">
+            <Button Grid.Column="0">Other func1</Button>
+            <Button Grid.Column="2">Other func2</Button>
+          </Grid>
+        </Grid>
+      </TabItem>
+
+    </TabControl>
+  </Grid>
+</Window>

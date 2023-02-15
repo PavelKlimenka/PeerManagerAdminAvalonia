@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Client.Models.DataModels;
 using Client.Services.Interfaces;
+using Client.Utilities;
 
 namespace Client.Services;
 
@@ -15,10 +16,12 @@ public sealed class UserProfileService : BaseService, IUserProfileService
     {
         try
         {
+            await Authorization.AddAuthorizationHeader(_httpClient);
             return await _httpClient.GetFromJsonAsync<List<UserProfileModel>>(Endpoint);
         }
         catch(Exception ex) 
         {
+            AppLog.LogError(ex.Message);
             throw;
         }
     }

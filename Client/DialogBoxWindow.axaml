@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+        x:Class="Client.DialogBoxWindow"
+        CanResize="False"
+        Title="DialogBox">
+
+  <Grid RowDefinitions="Auto, *, Auto" Background="#eeeeee">
+    <Label Grid.Row="0" Name="TitleLabel" Content="Title"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           FontSize="20"
+           FontWeight="Black">
+    </Label>
+    <Border Grid.Row="1" Margin="10, 10, 10, 0" BorderBrush="Gray" BorderThickness="1">
+      <Panel Background="White">
+        
+      </Panel>
+    </Border>
+
+    <Button Grid.Row="2" Name="CloseBtn" Margin="5"
+            HorizontalAlignment="Center" VerticalAlignment="Center">
+      Close
+    </Button>
+  </Grid>
+</Window>

@@ -1,10 +1,11 @@
-﻿using Client.Utilities;
+﻿using Client.Models.DataModels;
+using Client.Utilities;
 using System.Collections.ObjectModel;
 
 namespace Client.Models.ViewModels
 {
     public class MainWindowViewModel
     {
-        public ObservableCollectionMod<RoleUserProfileItemViewModel> RoleUserProfileItems { get; set; } = new();
+        public ObservableCollectionMod<RoleUserProfileModel> RoleUserProfileItems { get; set; } = new();
     }
 }

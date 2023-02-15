@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Client.MainWindow"
-        Title="Client">
+        Title="">
 
   <Window.Styles>
     <StyleInclude Source="/Styles/MainWindowStyles.axaml"></StyleInclude>
@@ -24,37 +24,36 @@
           <TextBlock FontWeight="Black" FontSize="18">Roles</TextBlock>
         </TabItem.Header>
 
-        <Grid RowDefinitions="*, Auto">
-          <DataGrid Name="RoleUserProfileGrid" ColumnWidth="*" Items="{Binding RoleUserProfileItems}">
+        <Grid RowDefinitions="Auto, *, Auto">
+          <!-- Search control -->
+          <Grid Grid.Row="0" Margin="0, 5" ColumnDefinitions="*, *, Auto, *">
+            <Image Grid.Column="2" Source="/Assets/Icons/search-interface-symbol.png" Width="20" Margin="5, 0"></Image>
+            <TextBox Name="RoleSearchTextBox" TextWrapping="NoWrap" FontSize="14" Grid.Column="3"></TextBox>
+          </Grid>
+
+          <DataGrid Grid.Row="1" GridLinesVisibility="Vertical" Name="RoleUserProfileGrid" ColumnWidth="*" Items="{Binding RoleUserProfileItems}">
             <DataGrid.AutoGenerateColumns>True</DataGrid.AutoGenerateColumns>
             <DataGrid.IsReadOnly>True</DataGrid.IsReadOnly>
             <DataGrid.CanUserResizeColumns>True</DataGrid.CanUserResizeColumns>
           </DataGrid>
 
           <!-- Footer -->
-          <Grid Grid.Row="1" Margin="0, 7" ColumnDefinitions="Auto, * , Auto">
+          <Grid Grid.Row="2" Margin="0, 7" ColumnDefinitions="Auto, * , Auto">
             <Button Name="RefreshRolesBtn" Grid.Column="0">Refresh</Button>
             <Button Name="ChangeRolesBtn" Grid.Column="2">Change</Button>
           </Grid>
         </Grid>
       </TabItem>
 
-      <!-- Other Tab -->
-      <TabItem>
+      <!-- Debug Tab -->
+      <TabItem Name="LogTabItem" IsVisible="False">
         <TabItem.Header>
-          <TextBlock FontWeight="Black" FontSize="18">Other</TextBlock>
+          <TextBlock FontWeight="Black" FontSize="18">Log</TextBlock>
         </TabItem.Header>
 
-        <Grid RowDefinitions="*, Auto">
-
-          <!-- Footer -->
-          <Grid Grid.Row="1" Margin="0, 7" ColumnDefinitions="Auto, * , Auto">
-            <Button Grid.Column="0">Other func1</Button>
-            <Button Grid.Column="2">Other func2</Button>
-          </Grid>
-        </Grid>
+        <TextBox Name="LogTextBox" IsReadOnly="True" Margin="0, 0, 0, 10">
+        </TextBox>
       </TabItem>
-
     </TabControl>
   </Grid>
 </Window>

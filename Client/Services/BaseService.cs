@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using Client.Utilities;
 using Microsoft.Extensions.Configuration;
 
 namespace Client.Services;
@@ -16,5 +17,4 @@ public class BaseService
         _httpClient = new HttpClient();
         _httpClient.BaseAddress = new Uri(_baseDataApiUri);
     }
- 
 }

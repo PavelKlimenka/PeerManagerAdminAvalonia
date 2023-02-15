@@ -1,7 +1,6 @@
-﻿
-namespace Client.Models.ViewModels
+﻿namespace Client.Models.DataModels
 {
-    public class RoleUserProfileItemViewModel
+    public class RoleUserProfileModel
     {
         public string Id { get; set; }
         public string FullName { get; set; }

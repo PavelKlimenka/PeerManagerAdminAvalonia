@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Client.MainWindow"
-        Title="">
+        Title="Peer Manager Admin">
 
   <Window.Styles>
     <StyleInclude Source="/Styles/MainWindowStyles.axaml"></StyleInclude>
@@ -12,9 +12,9 @@
 
   <Grid RowDefinitions="Auto, *">
      <!-- Header -->
-    <Panel Grid.Row="0" Background="AliceBlue">
+    <!--<Panel Grid.Row="0" Background="AliceBlue">
       <Label FontWeight="Black" HorizontalAlignment="Center">PEER MANAGER ADMIN</Label>
-    </Panel>
+    </Panel>-->
 
     <!-- Main Area -->
     <TabControl Grid.Row="1">

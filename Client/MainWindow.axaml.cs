@@ -63,6 +63,8 @@ namespace Client
 
             _dataContext.RoleUserProfileItems.Reset(RoleUserProfileItems);
 
+            SetRoleSearchResults(RoleSearchTextBox.Text);
+
             AppLog.Log($"Refreshed RoleUserProfile items: {UserProfiles.Count} items");
         }
 
@@ -70,6 +72,21 @@ namespace Client
         {
             _roleEditorWindow.Roles = await _roleService.GetRoles();
             AppLog.Log($"Pulled roles: {_roleEditorWindow.Roles.Count} roles");
+        }
+
+        private void SetRoleSearchResults(string text)
+        {
+            if(string.IsNullOrEmpty(text))
+            {
+                _dataContext.RoleUserProfileItems.Reset(RoleUserProfileItems);
+            }
+            else
+            {
+                _dataContext.RoleUserProfileItems.Reset(RoleUserProfileItems.Where(x =>
+                    x.FullName.Contains(text, StringComparison.InvariantCultureIgnoreCase) ||
+                    x.Id.Contains(text, StringComparison.InvariantCultureIgnoreCase) ||
+                    x.Roles.Contains(text, StringComparison.InvariantCultureIgnoreCase)));
+            }
         }
 
         private async void RefreshRolesBtn_Click(object? sender, RoutedEventArgs e)
@@ -94,19 +111,7 @@ namespace Client
 
         private void RoleSearchTextBox_KeyDown(object? sender, KeyEventArgs e)
         {
-            string text = RoleSearchTextBox.Text;
-
-            if(string.IsNullOrEmpty(text))
-            {
-                _dataContext.RoleUserProfileItems.Reset(RoleUserProfileItems);
-            }
-            else
-            {
-                _dataContext.RoleUserProfileItems.Reset(RoleUserProfileItems.Where(x =>
-                    x.FullName.Contains(text, StringComparison.InvariantCultureIgnoreCase) ||
-                    x.Id.Contains(text, StringComparison.InvariantCultureIgnoreCase) ||
-                    x.Roles.Contains(text, StringComparison.InvariantCultureIgnoreCase)));
-            }
+            SetRoleSearchResults(RoleSearchTextBox.Text);
         }
 
         private async void RoleEditorWindow_RolesChanged(object? sender, EventArgs e)

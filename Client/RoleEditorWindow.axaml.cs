@@ -3,7 +3,6 @@ using Avalonia.Interactivity;
 using Client.Models.DataModels;
 using Client.Models.ViewModels;
 using Client.Services;
-using Client.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace Client
 {
     public partial class RoleEditorWindow : Window
     {
-        public List<RoleModel> Roles { get; set; }
+        public List<RoleModel> Roles { get; set; } = new();
 
         private RoleEditorWindowViewModel _dataContext = new();
         private UserProfileModel? _selectedUserProfile = null;

@@ -31,4 +31,17 @@
     <Setter Property="BorderThickness" Value="1"></Setter>
   </Style>
 
+   <!--<Style Selector="Image.Rotating">
+    <Style.Animations>
+      <Animation Duration="0:0:5">
+        <KeyFrame Cue="0%">
+          <Setter Property="RotateTransfrom.Angle" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="RotateTransfrom.Angle" Value="360"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>-->
+
 </Styles>

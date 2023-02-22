@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="clr-namespace:AvaloniaGif;assembly=AvaloniaGif"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Client.MainWindow"
         Title="Peer Manager Admin">
@@ -19,19 +20,20 @@
     <!-- Main Area -->
     <TabControl Grid.Row="1">
       <!-- Roles Tab -->
-      <TabItem>
+      <TabItem Name="RoleUserProfileTabItem">
         <TabItem.Header>
           <TextBlock FontWeight="Black" FontSize="18">Roles</TextBlock>
         </TabItem.Header>
 
         <Grid RowDefinitions="Auto, *, Auto">
           <!-- Search control -->
-          <Grid Grid.Row="0" Margin="0, 5" ColumnDefinitions="*, *, Auto, *">
+          <Grid Grid.Row="0" Margin="0, 5" ColumnDefinitions="Auto, *, Auto, 300">
+            <Image Grid.Column="0" Name="RoleSyncImage" Source="/Assets/Icons/sync.gif" Width="20" Margin="5, 0" IsVisible="False"></Image>
             <Image Grid.Column="2" Source="/Assets/Icons/search-interface-symbol.png" Width="20" Margin="5, 0"></Image>
-            <TextBox Name="RoleSearchTextBox" TextWrapping="NoWrap" FontSize="14" Grid.Column="3"></TextBox>
+            <TextBox Grid.Column="3" Name="RoleSearchTextBox" TextWrapping="NoWrap" FontSize="14"></TextBox>
           </Grid>
 
-          <DataGrid Grid.Row="1" GridLinesVisibility="Vertical" Name="RoleUserProfileGrid" ColumnWidth="*" Items="{Binding RoleUserProfileItems}">
+          <DataGrid Grid.Row="1" Items="{Binding RoleUserProfileItems}" GridLinesVisibility="Vertical" Name="RoleUserProfileGrid" ColumnWidth="*">
             <DataGrid.AutoGenerateColumns>True</DataGrid.AutoGenerateColumns>
             <DataGrid.IsReadOnly>True</DataGrid.IsReadOnly>
             <DataGrid.CanUserResizeColumns>True</DataGrid.CanUserResizeColumns>

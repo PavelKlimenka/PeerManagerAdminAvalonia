@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Client.Models.DataModels;
@@ -8,7 +9,7 @@ using Client.Utilities;
 
 namespace Client.Services;
 
-public sealed class RoleService : BaseService, IRoleService
+public sealed class RoleService : BaseDataService, IRoleService
 {
     private const string EndpointSet = "role/setRoles";
     private const string EndpointGet = "role";
@@ -18,8 +19,8 @@ public sealed class RoleService : BaseService, IRoleService
         RoleSetModel model = new() { UserId = userId, Roles = roles };
         try
         {
-            await Authorization.AddAuthorizationHeader(_httpClient);
-            await _httpClient.PostAsJsonAsync<RoleSetModel>(EndpointSet, model);
+            HttpClient httpClient = await PrepareHttpClient();
+            await httpClient.PostAsJsonAsync<RoleSetModel>(EndpointSet, model);
             AppLog.Log($"Roles applied. User: {userId}");
         }
         catch(Exception ex)
@@ -33,8 +34,8 @@ public sealed class RoleService : BaseService, IRoleService
     {
         try
         {
-            await Authorization.AddAuthorizationHeader(_httpClient);
-            return await _httpClient.GetFromJsonAsync<List<RoleModel>>(EndpointGet);
+            HttpClient httpClient = await PrepareHttpClient();
+            return await httpClient.GetFromJsonAsync<List<RoleModel>>(EndpointGet);
         }
         catch(Exception ex)
         {

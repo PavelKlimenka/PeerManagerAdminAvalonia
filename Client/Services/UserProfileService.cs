@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Client.Models.DataModels;
@@ -8,7 +9,7 @@ using Client.Utilities;
 
 namespace Client.Services;
 
-public sealed class UserProfileService : BaseService, IUserProfileService 
+public sealed class UserProfileService : BaseDataService, IUserProfileService 
 {
     private const string Endpoint = "user-profiles";
 
@@ -16,8 +17,8 @@ public sealed class UserProfileService : BaseService, IUserProfileService
     {
         try
         {
-            await Authorization.AddAuthorizationHeader(_httpClient);
-            return await _httpClient.GetFromJsonAsync<List<UserProfileModel>>(Endpoint);
+            HttpClient httpClient = await PrepareHttpClient();
+            return await httpClient.GetFromJsonAsync<List<UserProfileModel>>(Endpoint);
         }
         catch(Exception ex) 
         {

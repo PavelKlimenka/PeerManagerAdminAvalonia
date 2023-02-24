@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Client.Models.DataModels;
+using Client.Models;
 using Client.Models.ViewModels;
 using Client.Services;
 using Client.Services.Interfaces;

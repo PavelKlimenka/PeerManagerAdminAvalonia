@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Client.Models.DataModels
+namespace Client.Models
 {
     public class RolesTabModel : TabModel
     {
@@ -54,9 +54,9 @@ namespace Client.Models.DataModels
                 {
                     Id = x.Id,
                     FullName = x.FullName,
-                    Roles = x.Roles.Aggregate("", 
+                    Roles = x.Roles.Aggregate("",
                         (str, role) => str + $"{role.RoleName}, ",
-                        (result) => string.IsNullOrEmpty(result)? string.Empty : result.Substring(0, result.Length - 2))
+                        (result) => string.IsNullOrEmpty(result) ? string.Empty : result.Substring(0, result.Length - 2))
                 };
             }));
 
@@ -69,7 +69,7 @@ namespace Client.Models.DataModels
 
         private void SetRoleSearchResults(string text)
         {
-            if(string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
             {
                 _viewModel.RoleUserProfileItems.Reset(RoleUserProfileItems);
             }
@@ -109,7 +109,7 @@ namespace Client.Models.DataModels
             await _roleEditorWindow.ShowDialog(_window, _window.UserProfiles.Single(x => x.Id == SelectedRoleUserProfileItem.Id));
         }
 
-        private void RoleUserProfileGrid_SelectionChanged(object? sender, SelectionChangedEventArgs e) 
+        private void RoleUserProfileGrid_SelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;
             SelectedRoleUserProfileItem = (RoleUserProfileModel)_window.RoleUserProfileGrid.SelectedItem;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Client.Models.DataModels;
+using Client.Models;
 
 namespace Client.Services.Interfaces;
 

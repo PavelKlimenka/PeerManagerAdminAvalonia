@@ -1,5 +1,4 @@
-﻿using Client.Models.DataModels;
-using Client.Utilities;
+﻿using Client.Utilities;
 using System.Collections.Generic;
 
 namespace Client.Models.ViewModels

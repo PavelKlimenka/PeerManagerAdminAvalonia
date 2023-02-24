@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Client.Models.DataModels;
+namespace Client.Models;
 
 public class Department
 {

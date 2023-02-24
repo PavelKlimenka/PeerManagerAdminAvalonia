@@ -1,5 +1,4 @@
-﻿
-namespace Client.Models.DataModels
+﻿namespace Client.Models
 {
     public class TabModel
     {

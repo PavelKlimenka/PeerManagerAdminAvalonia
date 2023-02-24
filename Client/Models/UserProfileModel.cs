@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Client.Models.DataModels;
+namespace Client.Models;
 
 public class UserProfileModel
 {

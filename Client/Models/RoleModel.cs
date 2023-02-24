@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Client.Models.DataModels;
+namespace Client.Models;
 
 public class RoleModel : IEquatable<RoleModel>
 {
@@ -9,8 +9,8 @@ public class RoleModel : IEquatable<RoleModel>
 
     public bool Equals(RoleModel? other)
     {
-        if(ReferenceEquals(null, other)) return false;
+        if (ReferenceEquals(null, other)) return false;
 
-        return this.Id == other.Id;
+        return Id == other.Id;
     }
 }

@@ -7,30 +7,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Client.Models.ViewModels.RoleEditorWindowViewModel;
 
-namespace Client
+namespace Client.Windows
 {
-    public partial class RoleEditorWindow : Window
+    public partial class DepartmentEditorWindow : Window
     {
-        public List<RoleModel> Roles { get; set; } = new();
+        public List<DepartmentShort> Departments { get; set; } = new();
 
-        private RoleEditorWindowViewModel _dataContext = new();
+        private DepartmentEditorWindowViewModel _viewModel = new();
         private UserProfileModel? _selectedUserProfile = null;
 
-        private RoleService _roleService = new();
+        private DepartmentService _departmentService = new();
 
-        public event EventHandler RolesChanged;
+        public event EventHandler DepartmentsChanged;
 
-        public RoleEditorWindow()
+        public DepartmentEditorWindow()
         {
             InitializeComponent();
-            DataContext = _dataContext;
+            DataContext = _viewModel;
             this.Opened += RoleEditorWindow_Opened;
-            RoleItemsControl.DataContext = _dataContext.UserRoles;
+            DepartmentListBox.DataContext = _viewModel;
             ApplyBtn.Click += ApplyBtn_Click;
             CancelBtn.Click += CancelBtn_Click;
         }
+
         public void Show(UserProfileModel selectedUserProfile)
         {
             _selectedUserProfile = selectedUserProfile;
@@ -51,23 +51,17 @@ namespace Client
 
         private void RoleEditorWindow_Opened(object? sender, EventArgs e)
         {
-            _dataContext.UserRoles.Clear();
-            List<RoleState> userRoles = new();
-            foreach(RoleModel role in Roles)
-            {
-                bool active = false;
-                if(_selectedUserProfile.Roles.Contains(role))
-                    active = true;
-                userRoles.Add(new() { Name = role.RoleName, Active = active });
-            }
-            _dataContext.UserRoles.Reset(userRoles);
+            _viewModel.Departments.Reset(Departments);
+            DepartmentListBox.SelectedItem = _viewModel.Departments.Single(x => x.Id == _selectedUserProfile?.DepartmentId);
         }
 
         private void ApplyBtn_Click(object? sender, RoutedEventArgs e)
         {
             e.Handled = true;
-            _ = _roleService.SetRoles(_selectedUserProfile.Id, _dataContext.UserRoles.Where(x => x.Active).Select(x => x.Name).ToArray());
-            RolesChanged?.Invoke(this, EventArgs.Empty);
+            DepartmentShort? selectedDepartment = (DepartmentShort?)DepartmentListBox.SelectedItem;
+            if (selectedDepartment == null) return;
+            _ = _departmentService.SetDepartment(_selectedUserProfile.Id, ((DepartmentShort)DepartmentListBox.SelectedItem).Id);
+            DepartmentsChanged?.Invoke(this, EventArgs.Empty);
             this.Hide();
         }
 

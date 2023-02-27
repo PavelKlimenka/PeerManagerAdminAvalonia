@@ -3,21 +3,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
-        x:Class="Client.RoleEditorWindow"
+        x:Class="Client.Windows.DepartmentEditorWindow"
         SizeToContent="Height"
         MaxWidth="300"
         CanResize="False"
         SystemDecorations="BorderOnly"
-        Title="Role Editor">
+        Title="Department Editor">
   <Border BorderBrush="Gray" BorderThickness="1">
     <Grid RowDefinitions="*, Auto">
-      <ItemsControl Name="RoleItemsControl" Padding="10" Items="{Binding}" >
-        <ItemsControl.ItemTemplate>
-          <DataTemplate>
-            <CheckBox Content="{Binding Name}" IsChecked="{Binding Active}"></CheckBox>
-          </DataTemplate>
-        </ItemsControl.ItemTemplate>
-      </ItemsControl>
+      <ListBox Name="DepartmentListBox" Padding="10" Items="Departments" SelectionMode="Single">
+      </ListBox>
 
       <Grid Grid.Row="1" Margin="10" ColumnDefinitions="*, *">
         <Button Grid.Column="0" HorizontalAlignment="Center" Name="ApplyBtn">Apply</Button>

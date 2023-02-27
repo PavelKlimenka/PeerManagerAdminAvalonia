@@ -1,0 +1,61 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="350" Height="300"
+        x:Class="Client.Windows.UserEditorWindow"
+        CanResize="False"
+        SystemDecorations="BorderOnly"
+        WindowStartupLocation="CenterOwner"
+        Title="User Editor">
+
+  <Window.Styles>
+    <StyleInclude Source="/Styles/UserEditorWindowStyles.axaml"></StyleInclude>
+  </Window.Styles>
+
+  <Grid Classes="Darker" RowDefinitions="*, Auto">
+    <TabControl Name="TabControl" Grid.Row="0">
+      <!-- Roles tab-->
+      <TabItem>
+        <TabItem.Header>
+          <TextBlock Classes="TabItemHeader">Roles</TextBlock>
+        </TabItem.Header>
+
+        <Border BorderBrush="Gray" BorderThickness="1">
+          <ItemsControl Classes="Brighter" Name="RoleItemsControl" Padding="10" Items="{Binding}" >
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <CheckBox Content="{Binding Name}" IsChecked="{Binding Active}"></CheckBox>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </Border>
+      </TabItem>
+
+      <!-- Departments tab-->
+      <TabItem>
+        <TabItem.Header>
+          <TextBlock Classes="TabItemHeader">Department</TextBlock>
+        </TabItem.Header>
+
+        <Border BorderBrush="Gray" BorderThickness="1">
+          <ListBox Classes="Brighter" Name="DepartmentListBox" Items="{Binding Departments}" >
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal" Spacing="0">
+                  <TextBlock Margin="0, 0, 5, 0" Foreground="Blue" IsVisible="{Binding Selected}">>></TextBlock>
+                  <TextBlock Text="{Binding Name}"></TextBlock>
+                </StackPanel>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </Border>
+      </TabItem>
+    </TabControl>
+
+    <Grid Grid.Row="1" Margin="5" ColumnDefinitions="*, *">
+      <Button Grid.Column="0" HorizontalAlignment="Center" Name="ApplyBtn">Apply</Button>
+      <Button Grid.Column="1" HorizontalAlignment="Center" Name="CancelBtn">Cancel</Button>
+    </Grid>
+  </Grid>
+</Window>

@@ -22,7 +22,7 @@
       <!-- Roles Tab -->
       <TabItem Name="RoleUserProfileTabItem">
         <TabItem.Header>
-          <TextBlock FontWeight="Black" FontSize="18">Roles</TextBlock>
+          <TextBlock FontWeight="Black" FontSize="18">Users</TextBlock>
         </TabItem.Header>
 
         <Grid RowDefinitions="Auto, *, Auto">
@@ -33,7 +33,7 @@
             <TextBox Grid.Column="3" Name="RoleSearchTextBox" TextWrapping="NoWrap" FontSize="14"></TextBox>
           </Grid>
 
-          <DataGrid Grid.Row="1" Items="{Binding RoleUserProfileItems}" GridLinesVisibility="Vertical" Name="RoleUserProfileGrid" ColumnWidth="*">
+          <DataGrid Grid.Row="1" Items="{Binding UserProfileItems}" GridLinesVisibility="Vertical" Name="RoleUserProfileGrid" ColumnWidth="*">
             <DataGrid.AutoGenerateColumns>True</DataGrid.AutoGenerateColumns>
             <DataGrid.IsReadOnly>True</DataGrid.IsReadOnly>
             <DataGrid.CanUserResizeColumns>True</DataGrid.CanUserResizeColumns>
@@ -41,8 +41,8 @@
 
           <!-- Footer -->
           <Grid Grid.Row="2" Margin="0, 7" ColumnDefinitions="Auto, * , Auto">
-            <Button Name="RefreshRolesBtn" Grid.Column="0">Refresh</Button>
-            <Button Name="ChangeRolesBtn" Grid.Column="2">Change</Button>
+            <Button Name="RefreshBtn" Grid.Column="0">Refresh</Button>
+            <Button Name="EditBtn" Grid.Column="2">Edit</Button>
           </Grid>
         </Grid>
       </TabItem>
